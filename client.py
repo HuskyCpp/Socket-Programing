@@ -13,7 +13,7 @@ SECRET_KEY = "5D2E44719232EA78CD2B32"
 # Create socket 
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 server_address = (HOST, PORT)
-print('connecting to %s port ' + str(server_address))
+print('connecting to %s port ' %str(server_address))
 s.connect(server_address)
 
 # Function sent message to server
