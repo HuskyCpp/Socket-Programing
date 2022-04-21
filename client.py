@@ -25,17 +25,21 @@ def sent_msg():
 
         time.sleep(0.2)
 
+        # Hash msg and send msg + hash code
         hash_code = hash.get_hash_code(msg, SECRET_KEY)
         data_sent = msg + '|' + hash_code
 
+        # Send data with TCP
         s.sendall(bytes(data_sent, "utf8"))
 
 # Function receive data to server
 def rev_msg():
     while True:
+        # Receive data
         data = s.recv(1024)
         msg_rev, hash_code_rev = data.decode("utf8").split('|')
 
+        # Check integrity of mesage
         if hash.check_integrity_msg(msg_rev, SECRET_KEY, hash_code_rev):
             print('\nReceive from server: ', msg_rev)    
         else:
